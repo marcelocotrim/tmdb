@@ -54,17 +54,16 @@ class ListViewController: UITableViewController {
     //layout of view and subviews
     func layout() {
         view.backgroundColor = .background()
-
+        view.addSubview(activityView)
+        
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.refreshControl = refreshControl
         tableView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
         tableView.separatorStyle = .none
         tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: "cell")
-        
         //to hide lines
         tableView.tableFooterView = UIView()
-        tableView.addSubview(activityView)
         
         navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "logo"))
         navigationItem.rightBarButtonItems = [UIBarButtonItem.space(-5), UIBarButtonItem.search(target: self, action: #selector(tapSearchButton))]

@@ -46,8 +46,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     //layout of view and subviews
     func layout() {
         view.backgroundColor = .background()
+        view.addSubview(activityView)
         
-        tableView.addSubview(activityView)
         tableView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
         tableView.separatorStyle = .none
         tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: "cell")

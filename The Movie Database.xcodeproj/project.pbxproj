@@ -98,10 +98,11 @@
 		6042FAEC1E1AFF0B0064408B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6042FAF11E1BB1A40064408B /* BarButtonItem.swift */,
-				6042FAEF1E1B061B0064408B /* Formatter.swift */,
 				6085DA951E1AB02C000193FF /* App.swift */,
+				6042FAF11E1BB1A40064408B /* BarButtonItem.swift */,
 				60B1DE031E1AF4A400F4AC24 /* Color.swift */,
+				6042FAEF1E1B061B0064408B /* Formatter.swift */,
+				6042FAE81E1AFB430064408B /* ImageView.swift */,
 				6085DA971E1AB131000193FF /* Movie.swift */,
 			);
 			name = Model;
@@ -110,7 +111,6 @@
 		6042FAED1E1AFF100064408B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6042FAE81E1AFB430064408B /* ImageView.swift */,
 				60B1DE011E1AF38100F4AC24 /* MovieTableViewCell.swift */,
 			);
 			name = View;

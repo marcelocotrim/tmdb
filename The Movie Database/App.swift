@@ -18,6 +18,7 @@ struct GlobalConstants {
 
 class App {
     
+    //singleton for the class
     static let shared = App()
     
     var genres: NSMutableDictionary!
@@ -40,7 +41,7 @@ class App {
                     }
                     block(nil)
                 case .failure(_):
-                    block(self.error(response))
+                    block(response.result.error!.localizedDescription)
                 default:
                     block(nil)
                 }
@@ -66,7 +67,7 @@ class App {
                     }
                     block(movies, value["total_pages"] as? NSInteger, nil)
                 case .failure(_):
-                    block(nil, nil, self.error(response))
+                    block(nil, nil, response.result.error!.localizedDescription)
                 default:
                     block(nil, nil, nil)
                 }
@@ -93,33 +94,10 @@ class App {
                     }
                     block(movies, value["total_pages"] as? NSInteger, nil)
                 case .failure(_):
-                    block(nil, nil, self.error(response))
+                    block(nil, nil, response.result.error!.localizedDescription)
                 default:
                     block(nil, nil, nil)
                 }
         }
     }
-    
-    //treats errors from the response of the api and converts to string
-    func error(_ response: DataResponse<Any>) -> String {
-        if response.data != nil && response.data!.count > 0 {
-            do {
-                let dictionary = (try JSONSerialization.jsonObject(with: response.data!, options: [])) as? NSDictionary
-                if let string = dictionary!["error"] as? String {
-                    return NSLocalizedString(string, comment: "")
-                }
-                if let dictionary = dictionary!["error"] as? NSDictionary {
-                    if let string = dictionary["message"] as? String {
-                        return NSLocalizedString(string, comment: "")
-                    }
-                }
-            } catch {
-                print("erro")
-            }
-            return response.result.error!.localizedDescription
-        } else {
-            return response.result.error!.localizedDescription
-        }
-    }
-
 }
