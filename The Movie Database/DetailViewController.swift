@@ -23,9 +23,9 @@ class DetailViewController: UIViewController {
         self.movie = movie
         scrollView = UIScrollView(frame: UIScreen.main.bounds)
         posterImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 1.5))
-        genresLabel = UILabel(frame: CGRect(x: 10, y: posterImageView.bounds.height, width: UIScreen.main.bounds.width - 20, height: 20))
-        releaseDateLabel = UILabel(frame: CGRect(x: 10, y: posterImageView.bounds.height + 20, width: UIScreen.main.bounds.width - 20, height: 20))
-        overviewLabel = UILabel(frame: CGRect(x: 10, y: posterImageView.bounds.height + 50, width: UIScreen.main.bounds.width - 20, height: 0))
+        genresLabel = UILabel(frame: CGRect(x: 10, y: posterImageView.bounds.height, width: UIScreen.main.bounds.width - 20, height: 30))
+        releaseDateLabel = UILabel(frame: CGRect(x: 10, y: posterImageView.bounds.height + 30, width: UIScreen.main.bounds.width - 20, height: 20))
+        overviewLabel = UILabel(frame: CGRect(x: 10, y: posterImageView.bounds.height + 60, width: UIScreen.main.bounds.width - 20, height: 0))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -54,12 +54,17 @@ class DetailViewController: UIViewController {
         posterImageView.load(url: movie.posterPath, width: 640) { (error) in
         }
         genresLabel.text = ""
-        for genre in movie.genreIds! {
+        
+        for i in 0..<movie.genreIds!.count {
+            let genre = movie.genreIds![i]
             if let genreName = App.shared.genres.object(forKey: "\(genre)") as? String {
-                genresLabel.text = genresLabel.text!.appending(genreName)+","
+                genresLabel.text = genresLabel.text!.appending(genreName)+", "
+            }
+            if i == movie.genreIds!.count - 1 {
+                genresLabel.text?.characters.removeLast()
+                genresLabel.text?.characters.removeLast()
             }
         }
-        genresLabel.text?.characters.removeLast()
         genresLabel.font = UIFont.italicSystemFont(ofSize: 12)
         genresLabel.textColor = .white
         genresLabel.numberOfLines = 0
