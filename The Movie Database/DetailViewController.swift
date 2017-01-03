@@ -84,7 +84,7 @@ class DetailViewController: UIViewController {
         overviewLabel.lineBreakMode = .byWordWrapping
         overviewLabel.sizeToFit()
         
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: overviewLabel.bounds.height + 40 + posterImageView.bounds.height + 84)
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: overviewLabel.bounds.height + 50 + posterImageView.bounds.height + 84)
     }
 
     override func didReceiveMemoryWarning() {
